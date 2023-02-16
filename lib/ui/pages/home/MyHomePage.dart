@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_enjoy/ui/components/home/Counter.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -27,13 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('よろしくね'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          children: <Widget>[const Text('よろしくね'), Counter(counter: _counter)],
         ),
       ),
       floatingActionButton: FloatingActionButton(
