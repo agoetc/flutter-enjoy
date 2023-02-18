@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_enjoy/ui/components/home/Counter.dart';
+import 'package:flutter_enjoy/ui/counter/page/CounterPage.dart';
+import 'package:flutter_enjoy/ui/todolist/page/TodoListPage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -11,11 +12,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
+  void _navItemTapped(int index) {
     setState(() {
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
@@ -25,22 +26,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[const Text('よろしくね'), Counter(counter: _counter)],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: <Widget>[const CounterPage(), const TodoListPage()]
+          .elementAt(_selectedIndex),
+      // This trailing comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: '設定')
         ],
+        currentIndex: _selectedIndex,
+        onTap: _navItemTapped,
       ),
     );
   }
